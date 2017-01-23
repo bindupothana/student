@@ -12,7 +12,7 @@
 
 </head>
 <body class="container">
-<div class="row" ng-app="myApp" ng-controller="maincntrl">
+<div class="row" ng-app="myApp" ng-controller="maincntrl" >
 <h2 class="text-center"> Navtech-Form</h2>
 <div class="col-md-offset-1 col-md-6 col-sm-12" >
 <div class="login">
@@ -26,7 +26,7 @@
 </div><br/>
 <div class="form-group" >
 <label id="label" class="control-label">Last Name:</label>
-<input type="text" class="form-control" name="username" ng-model="user.Lastname" placeholder="Enter Last Name" autocomplete="off" required />
+<input type="text" class="form-control" name="username" ng-model="user.lastname" placeholder="Enter Last Name" autocomplete="off" required />
 </div><br/>
 
 <div class="form-group">
@@ -40,6 +40,7 @@
 <input type="password" class="form-control" ng-model="user.pass" name="pass" placeholder="Enter Password" autocomplete="off" ng-minlength="5" ng-maxlength="12" required>
 <span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.minlength">password must contain atleast 5 charecters</span>
 <span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.maxlength">max-length of password reached</span>
+<span class="msg" </span>
 </div><br/>
 
 <div class="form-group">
@@ -92,9 +93,11 @@ Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" ng-model="us
 <div class="row">
 <div class="col-md-5 headname">
 <b>FirstName:</b> </div> <div class="col-md-7"> {{server.firstname}}</div> </div>
+<b>LastName:</b> </div> <div class="col-md-7"> {{server.lastname}}</div> </div>
 <div class="row"><div class="col-md-5 headname"><b>Email: </b> </div> <div class="col-md-7"> {{server.email}}<br></div></div>
 <div class="row"><div class="col-md-5 headname"><b>Password:</b></div><div class="col-md-7"> {{server.pass}}<br></div></div>
-<div class="row"><div class="col-md-5 headname"><b>Message: </b></div><div class="col-md-7"> {{server.message}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>address: </b></div><div class="col-md-7"> {{server.address}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>DOB: </b></div><div class="col-md-7"> {{server.date of birth}}<br></div></div>
 <div class="row"><div class="col-md-5 headname"><b>Gender: </b></div> <div class="col-md-7">{{server.gender}}<br></div></div>
 <div class="row"><div class="col-md-5 headname"><b>Country: </b></div><div class="col-md-7"> {{server.country}}<br></div></div>
 <b>JSON Data: </b> {{server}}
