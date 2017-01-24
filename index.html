@@ -6,10 +6,8 @@
  <link rel="stylesheet" href="css/bootstrap.min.css"> 
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/ui-bootstrap.min.js"></script>
-
 <script type="text/javascript" src="js/app.js"></script>
-
+<script type="text/javascript" src="js/ui-bootstrap.min.js"></script>
 </head>
 <body class="container">
 <div class="row" ng-app="myApp" ng-controller="maincntrl" >
@@ -22,11 +20,14 @@
 
 <div class="form-group" >
 <label id="label" class="control-label">First Name:</label>
+
 <input type="text" class="form-control" name="username" ng-model="user.firstname" placeholder="Enter First Name" autocomplete="off" required />
+<input type="text" pattern="[a-zA-Z]+" ng-pattern-restrict />
+
 </div><br/>
 <div class="form-group" >
 <label id="label" class="control-label">Last Name:</label>
-<input type="text" class="form-control" name="username" ng-model="user.lastname" placeholder="Enter Last Name" autocomplete="off" required />
+<input type="text" class="form-control" name="username" ng-model="user.lastname" placeholder="Enter Last Name" autocomplete="off" required ng-pattern="^(?=.*[A-Za-z])"  />
 </div><br/>
 
 <div class="form-group">
@@ -34,30 +35,42 @@
 <input type="email" class="form-control" ng-model="user.email" name="email" placeholder="Enter Email Address" autocomplete="off" required>
 <span class="msg" ng-show="frm.email.$dirty && frm.email.$invalid">Email Address is not valid</span>
 </div><br/>
+<div class="form-group">
+
+<md-input-container class="md-block" style="margin-top:0px;">
+            <label id="label" class="control-label">Password:</label> <md-icon
+                md-svg-src="/images/icons/ic_lock_black_24px.svg" class="name"></md-icon>
+            <input type="password" ng-model="newUser.userPassword"
+                name="userPassword" required 
+                ng-pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
+            <div
+                ng-messages="registerForm.userPassword.$error">
+                <div ng-message="pattern">*Password should be atleast 8 characters long
+                    and should contain one number,one character and one special
+                    character</div>
+                
+            </div>
+            </md-input-container>
+            </div>
 
 <div class="form-group">
-<label id="label" class="control-label">Password:</label>
+<label id="label" class="control-label">Confirm Password:</label>
 <input type="password" class="form-control" ng-model="user.pass" name="pass" placeholder="Enter Password" autocomplete="off" ng-minlength="5" ng-maxlength="12" required>
-<span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.minlength">password must contain atleast 5 charecters</span>
-<span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.maxlength">max-length of password reached</span>
-<span class="msg" </span>
-</div><br/>
+<span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.minlength"></span>
+<span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.maxlength"></span>
+<span class="msg"  </span>
+
+</div> <br/>
+
 
 <div class="form-group">
 <label id="label" class="control-label">Address:</label>
 <textarea type="textarea" rows="2" cols="50" name="Adress" class="form-control" ng-model="user.address" placeholder="Enter Your address" autocomplete="off" required></textarea><br>
 <span class="adr" ng-show="frm.address.$error.required"></span>
 </div><br/>
-<div class=" form-group">
-	<label for="Birthdate" class="control-label  col-sm-4">DOB:</label>
-<div class="col-md-6">
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="mm.dd.yyyy" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
+<div class="form-group">
+<label for="dob" class="control-label">DoB</label><br />
+                <input type="date" id="dob" ng-model="student.DoB" /> <br /><br />
 </div>
 
 <div class="form-group">
@@ -89,21 +102,24 @@ Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" ng-model="us
 <div class="login" >
 <h2>submitted values</h2>
 <hr>
-<h3 class="text-center">Submited Values:</h3>
+
 <div class="row">
-<div class="col-md-5 headname">
+<div class="col-md-5 headname"></br>
+
 <b>FirstName:</b> </div> <div class="col-md-7"> {{server.firstname}}</div> </div>
-<b>LastName:</b> </div> <div class="col-md-7"> {{server.lastname}}</div> </div>
+<b>LastName:</b>  </div>  <div class="col-md-7"> {{server.lastname}}</div> </div>
 <div class="row"><div class="col-md-5 headname"><b>Email: </b> </div> <div class="col-md-7"> {{server.email}}<br></div></div>
-<div class="row"><div class="col-md-5 headname"><b>Password:</b></div><div class="col-md-7"> {{server.pass}}<br></div></div>
+
 <div class="row"><div class="col-md-5 headname"><b>address: </b></div><div class="col-md-7"> {{server.address}}<br></div></div>
-<div class="row"><div class="col-md-5 headname"><b>DOB: </b></div><div class="col-md-7"> {{server.date of birth}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>DOB: </b></div><div class="col-md-7"> {{server.date of birt}}<br></div></div>
 <div class="row"><div class="col-md-5 headname"><b>Gender: </b></div> <div class="col-md-7">{{server.gender}}<br></div></div>
 <div class="row"><div class="col-md-5 headname"><b>Country: </b></div><div class="col-md-7"> {{server.country}}<br></div></div>
-<b>JSON Data: </b> {{server}}
+<b>JSON  Data: </b> {{server}}
 </div>
 </div>
 </div>
+
+
 </body>
 </html>
 
