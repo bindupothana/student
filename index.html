@@ -16,30 +16,36 @@
 <div class="login">
 <h2>Registration Form</h2>
 
-<form class="form-horizontal" name="frm" novalidate>
+<form class="form-horizontal" name="form" novalidate>
 
 <div class="form-group" >
 <label id="label" class="control-label">First Name:</label>
 
-<input type="text" class="form-control" name="username" ng-model="user.firstname" placeholder="Enter First Name" autocomplete="off" required />
-<input type="text" pattern="[a-zA-Z]+" ng-pattern-restrict />
+<input type="text" class="form-control" name="username" ng-model="user.firstname" placeholder="Enter First Name" autocomplete="off" required  pattern="[a-zA-Z]+" ng-pattern-restrict />
+<div ng-messages="form.username.$error">
+<div ng-message="required">this field isrequired</div>
+
 
 </div><br/>
 <div class="form-group" >
 <label id="label" class="control-label">Last Name:</label>
-<input type="text" class="form-control" name="username" ng-model="user.lastname" placeholder="Enter Last Name" autocomplete="off" required ng-pattern="^(?=.*[A-Za-z])"  />
+<input type="text" class="form-control" name="username" ng-model="user.lastname" placeholder="Enter Last Name" autocomplete="off" required ng-pattern="^(?=.*[A-Za-z])" />
+     <div ng-messages="form.username.$error">
+     <div ng-message="required">this field isrequired</div>
 </div><br/>
 
 <div class="form-group">
 <label id="label" class="control-label">Email:</label>
 <input type="email" class="form-control" ng-model="user.email" name="email" placeholder="Enter Email Address" autocomplete="off" required>
 <span class="msg" ng-show="frm.email.$dirty && frm.email.$invalid">Email Address is not valid</span>
+   
+
 </div><br/>
 <div class="form-group">
 
 <md-input-container class="md-block" style="margin-top:0px;">
             <label id="label" class="control-label">Password:</label> <md-icon
-                md-svg-src="/images/icons/ic_lock_black_24px.svg" class="name"></md-icon>
+                md-svg-src="/images/icons/ic_lock_black_24px.svg" class="password"></md-icon>
             <input type="password" ng-model="newUser.userPassword"
                 name="userPassword" required 
                 ng-pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$">
@@ -48,6 +54,8 @@
                 <div ng-message="pattern">*Password should be atleast 8 characters long
                     and should contain one number,one character and one special
                     character</div>
+                    <div ng-messages="form.password.$error">
+<div ng-message="required">this field isrequired</div>
                 
             </div>
             </md-input-container>
